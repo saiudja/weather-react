@@ -26,7 +26,6 @@ export default function App() {
           >
             hosted on Netlify
           </a>
-          <a></a>
         </p>
       </div>
     </div>
