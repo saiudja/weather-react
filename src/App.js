@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import Search from "./Search";
+import Weather from "./Weather";
 
 export default function App() {
   return (
     <div className="App">
       <div className="container">
         <h2>
-          <Search defaultCity="Kyiv" />
+          <Weather defaultCity="Kyiv" />
         </h2>
         <p>
           This project was coded by Saiudja and is{" "}

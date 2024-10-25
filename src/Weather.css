@@ -31,12 +31,13 @@
 }
 
 .Weather .btn {
-  background: #885df1;
+  background: #93f15d;
   font-weight: bold;
   font-size: 16px;
-  padding: 15px 0;
+  padding: 15px 10px;
   border: none;
   height: 50px;
+  border-radius: 5px;
 }
 
 .Weather .search-input::placeholder {
@@ -96,16 +97,4 @@
   position: relative;
   line-height: 1;
   top: -34px;
-}
-
-.Weather footer {
-  font-size: 14px;
-  margin-top: 40px;
-  line-height: 18px;
-  text-align: center;
-  color: rgba(39, 33, 66, 0.4);
-}
-
-.Weather footer a {
-  color: #885df1;
 }

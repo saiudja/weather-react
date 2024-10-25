@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
-import "./Search.css";
+import axios from "axios";
+import "./Weather.css";
 
-export default function Search(props) {
-  const [inputData, setInputData] = useState({ ready: false });
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
-  function showWeather(response) {
-    setInputData({
+  function handleResponse(response) {
+    setWeatherData({
       ready: true,
       coordinates: response.data.coordinates,
       temperature: response.data.temperature.current,
@@ -23,13 +23,18 @@ export default function Search(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = "fd015371da744832bf1e661917bce4bc";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(showWeather);
+    search();
   }
 
-  function changeCity(event) {
+  function handleCityChange(event) {
     setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "eac360db5fc86ft86450f3693e73o43f";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.ready) {
@@ -42,7 +47,7 @@ export default function Search(props) {
                 type="search"
                 placeholder="Enter a city.."
                 className="form-control search-input"
-                onChange={changeCity}
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-3 p-0">
@@ -54,10 +59,11 @@ export default function Search(props) {
             </div>
           </div>
         </form>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    handleSubmit();
+    search();
     return "Loading...";
   }
 }
