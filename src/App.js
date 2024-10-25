@@ -11,13 +11,18 @@ export default function App() {
         </h2>
         <p>
           This project was coded by Saiudja and is{" "}
-          <a href="https://github.com/saiudja/weather-react" target={"_blank"}>
+          <a
+            href="https://github.com/saiudja/weather-react"
+            target={"_blank"}
+            rel="noreferrer"
+          >
             open-sourced on GitHub
           </a>{" "}
           and{" "}
           <a
             href="https://hilarious-sopapillas-3f76f5.netlify.app/"
             target={"_blank"}
+            rel="noreferrer"
           >
             hosted on Netlify
           </a>
