@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
+import WeatherInfo from "./WeatherInfo";
+import "./Search.css";
 
-export default function Search() {
-  const [city, setCity] = useState("");
-  const [input, setInput] = useState(false);
-  const [weather, setWeather] = useState({});
+export default function Search(props) {
+  const [inputData, setInputData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function showWeather(response) {
-    setInput(true);
-    setWeather({
-      temperature: response.data.main.temp,
-      description: response.data.weather[0].description,
+    setInputData({
+      ready: true,
+      coordinates: response.data.coordinates,
+      temperature: response.data.temperature.current,
+      humidity: response.data.temperature.humidity,
+      date: new Date(response.data.time * 1000),
+      description: response.data.condition.description,
+      icon: response.data.condition.icon,
       wind: response.data.wind.speed,
-      humidity: response.data.main.humidity,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      city: response.data.city,
     });
   }
 
@@ -28,33 +32,32 @@ export default function Search() {
     setCity(event.target.value);
   }
 
-  let form = (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="search"
-        placeholder="Enter a city..."
-        onChange={changeCity}
-      />
-      <button type="Submit">Search</button>
-    </form>
-  );
-
-  if (input) {
+  if (weatherData.ready) {
     return (
-      <div>
-        {form}
-        <ul className="Weather">
-          <li>Temperature: {Math.round(weather.temperature)}°C</li>
-          <li>Description: {weather.description}</li>
-          <li>Humidity: {weather.humidity}%</li>
-          <li>Wind: {weather.wind}km/h</li>
-          <li className="Image">
-            <img src={weather.icon} alt={weather.description} />
-          </li>
-        </ul>
+      <div className="Weather">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-9 ">
+              <input
+                type="search"
+                placeholder="Enter a city.."
+                className="form-control search-input"
+                onChange={changeCity}
+              />
+            </div>
+            <div className="col-3 p-0">
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary w-100"
+              />
+            </div>
+          </div>
+        </form>
       </div>
     );
   } else {
-    return form;
+    handleSubmit();
+    return "Loading...";
   }
 }
