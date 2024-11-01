@@ -20,7 +20,7 @@ export default function App() {
           </a>{" "}
           and{" "}
           <a
-            href="https://hilarious-sopapillas-3f76f5.netlify.app/"
+            href="https://weather-react-sai.netlify.app/"
             target={"_blank"}
             rel="noreferrer"
           >
