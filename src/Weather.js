@@ -40,6 +40,7 @@ export default function Weather(props) {
   if (weatherData.ready) {
     return (
       <div className="Weather">
+        <h1 className="text-center">Sai Weather react App</h1>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9 ">
@@ -50,7 +51,7 @@ export default function Weather(props) {
                 onChange={handleCityChange}
               />
             </div>
-            <div className="col-3 p-0">
+            <div className="col-3">
               <input
                 type="submit"
                 value="Search"
